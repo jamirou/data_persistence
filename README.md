@@ -1,37 +1,54 @@
-# WikiHeroes app
+# Superheroes App - Settings Feature
 
-## Descripción
-Esta es una aplicación Android que permite a los usuarios buscar y ver información sobre superhéroes utilizando la API de SuperheroAPI. La aplicación muestra detalles como el nombre, imagen, estadísticas de poder, nombre real, editorial, raza, género, altura, peso y alter ego de los superhéroes.
+La aplicación Superheroes App permite a los usuarios personalizar su experiencia a través de la función de configuración. Con esta actualización, he implementado un manejo de datos que se almacenan en memoria utilizando DataStore. Esto garantiza que las preferencias del usuario se conserven incluso después de cerrar y volver a abrir la aplicación.
 
-## Características
-- Búsqueda de superhéroes por nombre.
-- Visualización de detalles completos de un superhéroe, incluyendo estadísticas y detalles personales.
-- Presentación de la información en una interfaz de usuario amigable.
+## Características Implementadas
 
-## Capturas de Pantalla
-![Inicio](captures/captura1.png) ![Personajes](captures/captura2.png)
-![Descripción1](captures/captura3.png) ![Descripció2](captures/captura4.png)
+- Cambio de modo nocturno.
+- Encendido y apagado del Bluetooth.
+- Ajuste de volumen.
+- Activación y desactivación de la vibración.
 
+## Uso de DataStore
 
-## Cómo Usar
-1. Abre la aplicación.
-2. En la pantalla principal, utiliza la barra de búsqueda para buscar un superhéroe por nombre.
-3. Haz clic en un superhéroe en la lista de resultados para ver detalles completos.
-4. En la pantalla de detalles, encontrarás información detallada, incluyendo estadísticas, raza, género, altura, peso y alter ego.
+He utilizado la biblioteca `androidx.datastore` para almacenar las preferencias del usuario de manera eficiente. Aquí hay un resumen de cómo se utilizó DataStore en la aplicación:
 
-## Requisitos Técnicos
-- Android Studio
-- Conexión a Internet
+- Almacenamiento de nivel de volumen.
+- Control de Bluetooth.
+- Control de vibración.
+- Cambio de modo nocturno.
 
-## Construcción del Proyecto
-Este proyecto utiliza la librería Retrofit para realizar llamadas a la API de SuperheroAPI y la librería Picasso para la carga de imágenes. Las llamadas a la API se manejan de forma asíncrona utilizando Coroutines.
-## Recuerda pedir tu api en [SuperheroAPI](https://superheroapi.com/)
+## Código Fuente
 
-## Créditos
-- [SuperheroAPI](https://superheroapi.com/): API de acceso gratuito que proporciona información detallada sobre superhéroes.
-- Librería Retrofit: Para realizar solicitudes HTTP a la API.
-- Librería Picasso: Para cargar imágenes desde URLs.
+El código fuente de esta funcionalidad se encuentra en los siguientes archivos:
 
-## Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+- `SettingsActivity.kt`: Aquí se implementa la lógica principal de la pantalla de configuración, incluyendo la interacción con DataStore.
+
+- `activitysettings.xml`: El diseño de la pantalla de configuración.
+
+## Uso de DataStore
+
+```kotlin
+implementation("androidx.datastore:datastore-preferences:1.0.0")
+// Obtener el DataStore
+val dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
+// Guardar un valor en DataStore
+private suspend fun saveVolume(value: Int) {
+    dataStore.edit { preferences ->
+        preferences[intPreferencesKey(VOLUME_LVL)] = value
+    }
+}
+
+// Leer valores desde DataStore
+private fun getSettings(): Flow<SettingsModel?> {
+    return dataStore.data.map { preferences ->
+        SettingsModel(
+            volume = preferences[intPreferencesKey(VOLUME_LVL)] ?: 50,
+            bluetooth = preferences[booleanPreferencesKey(KEY_BLUETOOTH)] ?: true,
+            darkMode = preferences[booleanPreferencesKey(KEY_DARK_MODE)] ?: false,
+            vibration = preferences[booleanPreferencesKey(KEY_VIBRATION)] ?: true
+        )
+    }
+}
 
