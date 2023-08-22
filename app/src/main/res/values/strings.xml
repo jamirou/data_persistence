@@ -16,4 +16,11 @@
 
 
     <string name="alter_Ego">Alter Ego:</string>
+    <string name="settings">Settings</string>
+    <string name="darkmode">DarkMode</string>
+    <string name="descriptiondarkmode">turn on dark mode for a visual change</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="activate_bluetooth">activate bluetooth</string>
+    <string name="volume">turn up volume</string>
+    <string name="vibration">Also vibrate for calls</string>
 </resources>

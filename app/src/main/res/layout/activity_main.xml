@@ -8,15 +8,16 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/placeholderImageView"
         android:layout_width="match_parent"
         android:layout_height="680dp"
-        android:scaleType="centerCrop"
         android:layout_marginTop="95dp"
+        android:contentDescription="@string/superhero_image_text"
+        android:scaleType="centerCrop"
         android:src="@drawable/antihero"
-        android:visibility="visible"
-        android:contentDescription="@string/superhero_image_text" />
+        android:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -52,13 +53,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            app:iconifiedByDefault="false"
             android:background="@color/superheroTitle"
+            app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:queryHint="Buscar..."
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="Buscar..." />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -69,6 +70,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/settings" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

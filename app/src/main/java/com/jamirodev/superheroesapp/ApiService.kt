@@ -6,10 +6,10 @@ import retrofit2.http.Path
 
 interface ApiService {
 
-    @GET("/api/YourAPI/search/{name}")
+    @GET("/api/245873148401755/search/{name}")
     suspend fun getSuperheroes(@Path("name") superheroName: String): Response<SuperHeroDataResponse>
 
-    @GET("/api/YourAPI/{id}")
+    @GET("/api/245873148401755/{id}")
     suspend fun getSuperheroDetail(@Path("id") superheroId:String): Response<SuperHeroDetailResponse>
 
 

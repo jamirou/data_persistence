@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SuperHeroesApp"
         tools:targetApi="31">
         <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailSuperheroActivity"
             android:exported="false" />
         <activity

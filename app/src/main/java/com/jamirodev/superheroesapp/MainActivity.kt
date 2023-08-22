@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jamirodev.superheroesapp.DetailSuperheroActivity.Companion.EXTRA_ID
 import com.jamirodev.superheroesapp.databinding.ActivityMainBinding
+import com.jamirodev.superheroesapp.settings.SettingsActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: SuperheroAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,6 +37,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+
+        val btnSettings = findViewById<ImageButton>(R.id.btnSettings)
+
+        btnSettings.setOnClickListener { navigateToSettings() }
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchByName(query.orEmpty())
@@ -47,6 +55,11 @@ class MainActivity : AppCompatActivity() {
         binding.rvSuperhero.setHasFixedSize(true)
         binding.rvSuperhero.layoutManager = LinearLayoutManager(this)
         binding.rvSuperhero.adapter = adapter
+    }
+
+    private fun navigateToSettings() {
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun searchByName(query: String) {
