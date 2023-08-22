@@ -1,4 +1,4 @@
-# Superheroes App - Settings Feature
+# WikiHero - Settings Feature
 
 La aplicación Superheroes App permite a los usuarios personalizar su experiencia a través de la función de configuración. Con esta actualización, he implementado un manejo de datos que se almacenan en memoria utilizando DataStore. Esto garantiza que las preferencias del usuario se conserven incluso después de cerrar y volver a abrir la aplicación.
 
